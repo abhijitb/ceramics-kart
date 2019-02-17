@@ -12,6 +12,9 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/main_styles.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/responsive.css">
+<link rel="stylesheet" type="text/css" href="/assets/css/contact_styles.css">
+<link rel="stylesheet" type="text/css" href="/assets/css/contact_responsive.css">
+
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="/assets/js/popper.js"></script>
@@ -78,14 +81,14 @@
 				<div class="row">
 					<div class="col-lg-12 text-right">
 						  <div class="logo_container">
-							  <a href="#">ceramics<span>kart</span></a>
+							  <a href="/">ceramics<span>kart</span></a>
               </div>
 	  					<nav class="navbar">
   							<ul class="navbar_menu">
 								  <li><a href="/">home</a></li>
 							  	<li><a href="#">floor tiles</a></li>
 						  		<li><a href="#">wall tiles</a></li>
-					  			<li><a href="#">3d visualizer</a></li>
+					  			<li><a href="http://3dvisualizer.ceramicskart.com/" target="_blank">3d visualizer</a></li>
                   <li><a href="#">sanitaryware</a></li>
                   <li><a href="#">augmented reality</a></li>
 		  						<li><a href="#">other products</a></li>
@@ -153,9 +156,8 @@
 				<div class="col-lg-6">
 					<div class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
 						<ul class="footer_nav">
-							<li><a href="#">Blog</a></li>
 							<li><a href="#">FAQs</a></li>
-							<li><a href="contact.html">Contact us</a></li>
+							<li><a href="/contact">Contact us</a></li>
 						</ul>
 					</div>
 				</div>
@@ -174,7 +176,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="footer_nav_container">
-						<div class="cr">©2018 All Rights Reserverd. CeramicsKart</div>
+						<div class="cr">&copy; 2019 All Rights Reserverd. CeramicsKart</div>
 					</div>
 				</div>
 			</div>
