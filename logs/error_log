@@ -1,0 +1,8 @@
+[Mon Feb 11 16:16:15.423538 2019] [php7:notice] [pid 207] [client ::1:53350] PHP Fatal error:  Illegal offset type in /Users/abhijitbhatnagar/Sites/shorturl-dashboard/application/modules/admin/controllers/Admin.php on line 65, referer: http://shorturl-dashboard/admin/sms
+[Mon Feb 11 16:16:15.424055 2019] [php7:notice] [pid 207] [client ::1:53350] PHP Stack trace:, referer: http://shorturl-dashboard/admin/sms
+[Mon Feb 11 16:16:15.424334 2019] [php7:notice] [pid 207] [client ::1:53350] PHP   1. {main}() /Users/abhijitbhatnagar/Sites/shorturl-dashboard/index.php:0, referer: http://shorturl-dashboard/admin/sms
+[Mon Feb 11 16:16:15.424469 2019] [php7:notice] [pid 207] [client ::1:53350] PHP   2. require_once() /Users/abhijitbhatnagar/Sites/shorturl-dashboard/index.php:315, referer: http://shorturl-dashboard/admin/sms
+[Mon Feb 11 16:17:51.238411 2019] [php7:notice] [pid 4207] [client ::1:53749] PHP Fatal error:  Illegal offset type in /Users/abhijitbhatnagar/Sites/shorturl-dashboard/application/modules/admin/controllers/Admin.php on line 65, referer: http://shorturl-dashboard/admin/sms
+[Mon Feb 11 16:17:51.278575 2019] [php7:notice] [pid 4207] [client ::1:53749] PHP Stack trace:, referer: http://shorturl-dashboard/admin/sms
+[Mon Feb 11 16:17:51.279283 2019] [php7:notice] [pid 4207] [client ::1:53749] PHP   1. {main}() /Users/abhijitbhatnagar/Sites/shorturl-dashboard/index.php:0, referer: http://shorturl-dashboard/admin/sms
+[Mon Feb 11 16:17:51.279710 2019] [php7:notice] [pid 4207] [client ::1:53749] PHP   2. require_once() /Users/abhijitbhatnagar/Sites/shorturl-dashboard/index.php:315, referer: http://shorturl-dashboard/admin/sms
