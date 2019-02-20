@@ -17,72 +17,12 @@ class Admin extends MX_Controller {
 		$this->data['user_identity'] = $this->session->userdata('identity');
 	}
 
-	public function import() {
+	public function files() {
+		$this->template->set('title', 'File Management');
+		$this->template->load('admin/default_layout', 'contents' , 'admin/files', $this->data);
 
-		if(!empty($this->input->post())) {
-			$this->load->library('csvreader');
-			$this->load->helper('string');
-			if(empty($_FILES["csv_file"]["tmp_name"])) {
-				$this->session->set_flashdata("error", "No file selected for import.");
-				redirect('/admin/import', 'refresh');
-			}
-			$file_data = $this->csvreader->parse_file($_FILES["csv_file"]["tmp_name"]);
-			foreach($file_data as $row) {
-                $data[] = array(
-					'first_name' => $row["first_name"],
-                    'last_name' => $row["last_name"],
-					'mobile_number' => $row["mobile_number"],
-					'amount' => $row["amount"],
-					'code' => random_string('alnum', 12),
-					'created_date' => time()
-				);
-			}
-			$this->admin_model->insertCustomData($data);
-			$this->session->set_flashdata("success", "Data imported sucessfully.");
-		}		
-		$this->template->set('title', 'Import CSV');
-		$this->template->load('admin/default_layout', 'contents' , 'admin/import', $this->data);
 	}
 
-	public function report() {
-		$this->data['tracking_info'] = $this->admin_model->getTrackingInfo();
-		$this->data['sms_data'] = $this->admin_model->getSmsData();
-		$this->template->set('title', 'Tracking Info');
-		$this->template->load('admin/default_layout', 'contents' , 'admin/report', $this->data);
-	}
-
-	public function sms() {
-		if(!empty($this->input->post())) {
-			$user_ids = $this->input->post('user_ids');
-			$user_info = $this->admin_model->getUserInfo($user_ids);
-			$this->load->library('mobinextapi');
-			$smsObj = new Mobinextapi();
-			foreach($user_info as $info) {
-				$data['name'] = ucfirst($info->first_name) . ' ' . ucfirst($info->last_name);
-				$data['amount'] = $info->amount;
-				$data['code'] = $info->code;
-				$message = $this->util->replace_template_vars($data, SMS_MESSAGE);
-				$response = $smsObj->sendSms($info->mobile_number, $message);
-
-				$response = $this->util->object_to_array(json_decode($response));
-				foreach($response['MessageData'][0]['MessageParts'] as $key => $message) {
-					$response_data['message_id'] = $response['MessageData'][0]['MessageParts'][$key]['MsgId'];
-					$response_data['message'] = $message['Text'];
-					$response_data['code'] = $info->code;
-					$response_data['mobile_number'] = $info->mobile_number;
-					$response_data['status'] = 'Sent';
-					$response_data['created_date'] = time();
-					$this->admin_model->insertSmsLog($response_data);
-				}
-			}
-			$this->session->set_flashdata("success", "SMS sent successfully.");
-			redirect('/admin/sms');
-		}
-		$this->data['lists'] = $this->admin_model->getSmsList();
-		$this->template->set('title', 'Send SMS');
-		$this->template->load('admin/default_layout', 'contents' , 'admin/sms', $this->data);
-	}
-	
 	public function index()	{
 		if(strpos($this->input->server('REQUEST_URI'), '/admin') === false){
 			$this->storeUserInfo();

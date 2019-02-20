@@ -103,6 +103,7 @@
           <ul class="sidebar-menu" data-widget="tree">
             <!-- Optionally, you can add icons to the links -->
             <li><a href="/admin"><i class="fa fa-home"></i> <span>Home</span></a></li>
+            <li><a href="/admin/files"><i class="fa fa-file"></i> <span>File Management</span></a></li>
             <li><a href="/admin/users"><i class="fa fa-users"></i> <span>User Management</span></a></li>
             <li><a href="/admin/logout"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>
           </ul>
