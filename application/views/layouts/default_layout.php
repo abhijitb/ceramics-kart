@@ -12,13 +12,13 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/main_styles.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/responsive.css">
-<link rel="stylesheet" type="text/css" href="/assets/css/contact_styles.css">
-<link rel="stylesheet" type="text/css" href="/assets/css/contact_responsive.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/contact_styles.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/contact_responsive.css">
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="/assets/js/popper.js"></script>
-<script src="/assets/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/popper.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -185,10 +185,10 @@
 
 </div>
 
-<script src="/assets/plugins/Isotope/isotope.pkgd.min.js"></script>
-<script src="/assets/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-<script src="/assets/plugins/easing/easing.js"></script>
-<script src="/assets/plugins/js/custom.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/Isotope/isotope.pkgd.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/easing/easing.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/js/custom.js"></script>
 </body>
 
 </html>
