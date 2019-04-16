@@ -88,7 +88,7 @@
 								  <li><a href="/">home</a></li>
 							  	<li><a href="#">floor tiles</a></li>
 						  		<li><a href="#">wall tiles</a></li>
-					  			<li><a href="http://3dvisualizer.ceramicskart.com/" target="_blank">3d visualizer</a></li>
+					  			<li><a href="https://3dvisualizer.ceramicskart.com/" target="_blank">3d visualizer</a></li>
                   <li><a href="#">sanitaryware</a></li>
                   <li><a href="#">augmented reality</a></li>
 		  						<li><a href="#">other products</a></li>
@@ -137,7 +137,7 @@
         <li class="menu_item"><a href="/">home</a></li>
         <li class="menu_item"><a href="#">floor tiles</a></li>
         <li class="menu_item"><a href="#">wall tiles</a></li>
-        <li class="menu_item"><a href="http://3dvisualizer.ceramicskart.com/">3d visualizer</a></li>
+        <li class="menu_item"><a href="https://3dvisualizer.ceramicskart.com/">3d visualizer</a></li>
         <li class="menu_item"><a href="#">sanitaryware</a></li>
         <li class="menu_item"><a href="#">augmented reality</a></li>
         <li class="menu_item"><a href="#">other products</a></li>
