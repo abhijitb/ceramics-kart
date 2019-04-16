@@ -18,7 +18,7 @@
 
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/skins/skin-red-light.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/skins/skin-blue-light.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -54,7 +54,7 @@
     <script src="<?php echo base_url(); ?>assets/bower_components/fastclick/lib/fastclick.js"></script>
 
   </head>
-  <body class="hold-transition skin-red-light sidebar-mini fixed">
+  <body class="hold-transition skin-blue-light sidebar-mini fixed">
     <div class="wrapper">
 
       <!-- Main Header -->
@@ -103,8 +103,9 @@
           <ul class="sidebar-menu" data-widget="tree">
             <!-- Optionally, you can add icons to the links -->
             <li><a href="/admin"><i class="fa fa-home"></i> <span>Home</span></a></li>
-            <li><a href="/admin/files"><i class="fa fa-file"></i> <span>File Management</span></a></li>
+            <li><a href="/admin/files"><i class="fa fa-file"></i> <span>File Manager</span></a></li>
             <li><a href="/admin/users"><i class="fa fa-users"></i> <span>User Management</span></a></li>
+            <li><a href="/admin/settings"><i class="fa fa-wrench"></i> <span>Settings</span></a></li>
             <li><a href="/admin/logout"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>
           </ul>
           <!-- /.sidebar-menu -->

@@ -1,81 +1,115 @@
-
-
 <section class="content-header">
-    <h1> User Management</h1>
+    <h1> File Management</h1>
     <ol class="breadcrumb">
         <li><a href="/admin/"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#" class="active">User Management</a></li>
+        <li><a href="#" class="active">File Management</a></li>
     </ol>
 </section>
     
 <section class="content">
-
 	<?php if(!empty($this->session->userdata('error'))) { ?>
         <div class="alert alert-danger"><?php echo $this->session->userdata('error'); ?></div>
     <?php } ?>
-
-
-		<?php if(!empty($this->session->userdata('success'))) { ?>
+    <?php if(!empty($this->session->userdata('success'))) { ?>
         <div class="alert alert-success"><?php echo $this->session->userdata('success'); ?></div>
     <?php } ?>
 
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">List of users</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <table id="tracking-info" class="table table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Email</th>
-																		<th>Groups</th>
-																		<th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach($users as $user) { ?>
-                                <tr>
-                                    <td><?php echo $user->id; ?></td>
-                                    <td><?php echo $user->first_name; ?></td>
-                                    <td><?php echo $user->last_name; ?></td>
-                                    <td><?php echo $user->email; ?></td>
-																		<td><?php foreach ($user->groups as $group):?>
-																				<a class="btn-xs bg-purple" href="/admin/edit_group/<?php echo $group->id; ?>"><?php echo $group->name;?></a>
-																				<br />
-																				<?php endforeach?>
-																		</td>
-																		<td><?php if($user->active) { ?>
-																			<a class="btn-xs bg-purple" href="/admin/deactivate/<?php echo $user->id; ?>"> Active</a>
-																		<?php } else { ?>
-																			<a class="btn-xs bg-purple" href="/admin/activate/<?php echo $user->id; ?>"> InActive</a>
-																		<?php } ?></td>
-                                    <td>
-																			<a class="btn-xs bg-purple" href="/admin/edit_user/<?php echo $user->id; ?>"> Edit</a>
-																		</td>
-                                </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- /.box-body -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab_1" data-toggle="tab">List</a></li>
+                <li><a href="#tab_2" data-toggle="tab">Upload</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab_1">
+                        <div class="box-header">
+                            <h3 class="box-title">File List</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body table-responsive ">
+                            <table id="tracking-info" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Type</th>
+                                        <th>Size</th>
+                                        <th>Width</th>
+                                        <th>Height</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($file_list as $key => $file) { ?>
+                                    <tr>
+                                        <td><?php echo $key + 1; ?></td>
+                                        <td><?php echo $file['name']; ?></td>
+                                        <td><?php echo $file['type']; ?></td>
+                                        <td><?php echo $file['size']; ?> KB</td>
+                                        <td><?php echo $file['width']; ?></td>
+                                        <td><?php echo $file['height']; ?></td>
+                                        <td>
+                                            <a class="btn-xs bg-purple" href="/admin/file-delete?name=<?php echo $file['name'];?>"> Delete</a>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
                 </div>
-                <!-- /.box -->
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="tab_2">
+                        <div class="box-header">
+                            <h3 class="box-title">File Uploader</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <form name="form_id" id="form_id" action="javascript:void(0);" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <input type="file" name="vasplus_multiple_files" id="vasplus_multiple_files" multiple="multiple"/>
+                                </div>
+                                <div class="form-group">
+                                    <input class="btn btn-info" type="submit" value="Upload"/>
+                                </div>
+                            </form>
+
+                            <table class="table table-striped table-bordered" id="add_files">
+                                <thead>
+                                    <tr>
+                                        <th>File Name</th>
+                                        <th>Status</th>
+                                        <th>File Size</th>
+                                        <th>Action</th>
+                                    <tr>
+                                </thead>
+                                <tbody>
+                                
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
+                <!-- /.tab-content -->
+            </div>
         </div>
-				<br>
-				<p>
-					<a class="btn btn-primary" href="/admin/create_user"><i class="fa fa-plus"></i> Create User</a> <a class="btn btn-primary" href="/admin/create_group"><i class="fa fa-plus"></i> Create Group</a>
-				</p>
+    </div>
 </section>
-<script>
+<script src="<?php echo base_url(); ?>assets/js/vpb_uploader.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	// Call the main function
+	new vpb_multiple_file_uploader
+	({
+		vpb_form_id: "form_id", // Form ID
+		autoSubmit: true,
+		vpb_server_url: "/admin/file_upload" 
+	});
+});
+
 $(function () {
-    $('#tracking-info').DataTable();
+    $('#tracking-info').DataTable({
+        "pageLength": 25
+    });
 });
 </script>

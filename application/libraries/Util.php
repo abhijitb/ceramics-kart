@@ -107,4 +107,9 @@ class Util {
             $message);
     }
 
+    public function is_image($pathToFile) {
+          if(exif_imagetype($pathToFile) === FALSE)
+           return FALSE;
+       return TRUE;
+    }
 }

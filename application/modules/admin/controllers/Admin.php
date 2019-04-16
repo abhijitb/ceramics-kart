@@ -8,19 +8,123 @@ class Admin extends MX_Controller {
 		parent::__construct();
 		$this->load->database();
 		$this->load->library(array('ion_auth','form_validation'));
-		$this->load->helper(array('url','language'));
+		$this->load->helper(array('url','language','string'));
 		$this->load->model('admin_model');
 
 		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 
 		$this->lang->load('auth');
 		$this->data['user_identity'] = $this->session->userdata('identity');
+		$this->path = FCPATH . 'uploads';
 	}
 
 	public function files() {
+		$files = scandir($this->path);
+		$files = array_diff(scandir($this->path), array('.', '..'));
+
+		$file_list = array();
+		foreach($files as $filename) {
+			$file_info = array();
+			if($this->util->is_image($this->path . '/' .$filename)) {
+				$image_info = getimagesize($this->path . '/' .$filename) ;
+				$file_info['width'] = $image_info[0];
+				$file_info['height'] = $image_info[1];
+				$file_info['type'] = $image_info['mime'];	
+			} else {
+				$file_info['width'] = 0;
+				$file_info['height'] = 0;
+				$file_info['type'] = mime_content_type($this->path . '/' .$filename);	
+			}
+			$file_info['size'] = round(filesize($this->path . '/' .$filename) / 1024, 2);
+			$file_info['name'] = $filename;
+			$file_list[] = $file_info;
+		}
+		$this->data['file_list'] = $file_list;
+
 		$this->template->set('title', 'File Management');
 		$this->template->load('admin/default_layout', 'contents' , 'admin/files', $this->data);
 
+	}
+
+	public function file_upload() {
+		if(isset($_POST) && $_SERVER['REQUEST_METHOD'] == "POST")
+		{
+			$vpb_file_name = strip_tags($_FILES['upload_file']['name']); //File Name
+			$vpb_file_id = strip_tags($_POST['upload_file_ids']); // File id is gotten from the file name
+			$vpb_file_size = $_FILES['upload_file']['size']; // File Size
+			$vpb_uploaded_files_location = FCPATH . 'uploads/';
+			$vpb_final_location = $vpb_uploaded_files_location . $vpb_file_name; //Directory to save file plus the file to be saved
+			//Without Validation and does not save filenames in the database
+			if(move_uploaded_file(strip_tags($_FILES['upload_file']['tmp_name']), $vpb_final_location))
+			{
+				//Display the file id
+				echo $vpb_file_id;
+			}
+			else
+			{
+				//Display general system error
+				echo 'general_system_error';
+			}
+		}
+	}
+
+	public function file_delete() {
+		$file_name = urldecode($this->input->get('name'));
+		if(strpos($file_name, '../') === FALSE) {
+			if(is_file($this->path.'/'.$file_name)) {
+				unlink($this->path.'/'.$file_name);
+				$this->session->flashdata('success','File deleted successfully.');
+			} else {
+				$this->session->flashdata('error','File not found.');
+			}		
+		} else {
+			$this->session->flashdata('error','Invalid file path.');
+		}
+		redirect('admin/files','refresh');
+	}
+
+	public function settings() {
+		if (!$this->ion_auth->logged_in()) {
+            redirect('admin', 'refresh');
+        }
+		$user = $this->ion_auth->user()->row();
+		$this->data['user_id'] = array(
+			'name'  => 'user_id',
+			'id'    => 'user_id',
+			'type'  => 'hidden',
+			'value' => $user->id,
+		);
+		$this->data['user_details'] = $user;
+		$this->data['api_key'] = $this->admin_model->getUserApiKey($user->id);
+		$this->template->set('title', 'User - Settings');
+		$this->template->load('admin/default_layout', 'contents' , 'admin/settings', $this->data);
+	}
+
+	public function generate_api_key() {
+		if(!empty($this->input->post())) {
+			$data['key'] = random_string('alnum', 40);
+			$data['level'] = 10;
+			$data['ignore_limits'] = 0;
+			$data['is_private_key'] = 0;
+
+			if($this->admin_model->updateApiKey($this->input->post('user_id'), $data)) {
+				echo json_encode(array(
+					'status' => 'success',
+					'api_key' => $data['key']
+				));
+			} else {
+				echo json_encode(array(
+					'status' => 'error',
+					'api_key' => ''
+				));
+	
+			}
+		} else {
+			echo json_encode(array(
+				'status' => 'error',
+				'api_key' => ''
+			));
+		}
 	}
 
 	public function index()	{

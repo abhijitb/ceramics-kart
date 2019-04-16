@@ -53,4 +53,28 @@ class Admin_model extends CI_Model {
         $query = $this->db->get('sms_reports');
         return $query->result();
     }
+
+    public function getUserApiKey($user_id) {
+        $this->db->from('rest_api_keys');
+        $this->db->where(array('user_id' => $user_id));
+        $result = $this->db->get();
+        return $result->row_array();
+    }
+
+    public function updateApiKey($id, $data) {
+        $this->db->where('user_id', $id);
+        $q = $this->db->get('rest_api_keys');
+        $this->db->reset_query();
+        if ($q->num_rows() > 0) {
+            return $this->db->where('user_id', $id)->update('rest_api_keys', $data);
+        } else {
+            return $this->db->set('user_id', $id)->insert('rest_api_keys', $data);
+        }
+    }
+
+    public function getUserDetailsFromApiKey($api_key) {
+        $sql = "select * from users where id = (select user_id from rest_api_keys where `key` = '{$api_key}')";
+        $query = $this->db->query($sql);
+        return $query->row_array();
+    }
 }
