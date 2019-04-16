@@ -77,4 +77,17 @@ class Admin_model extends CI_Model {
         $query = $this->db->query($sql);
         return $query->row_array();
     }
+
+    public function getAllUsers() {
+        $query = $this->db->get('users');
+        return $query->result();
+    }
+
+    public function getUser($id) {
+        $this->db->from('users');
+        $this->db->where(array('id' => $id));
+        $result = $this->db->get();
+        return $result->row();
+    }
+
 }
