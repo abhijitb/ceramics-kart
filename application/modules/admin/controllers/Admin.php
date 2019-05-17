@@ -144,6 +144,104 @@ class Admin extends MX_Controller {
 		}
 	}
 
+	public function import() {
+
+		if (!$this->ion_auth->logged_in()) {
+			redirect('admin/login', 'refresh');
+		}
+
+		if(!empty($this->input->post())) {
+			if($this->input->post('type') == 'parse') {
+				$this->data['show_parsed_data'] = true;
+				if(empty($_FILES["csv_file"]["tmp_name"])) {
+					$this->session->set_flashdata("error", "No file selected for import.");
+					redirect('/admin/import', 'refresh');
+				}
+				$this->load->library('csvreader');
+				$group_name = substr($_FILES["csv_file"]['name'], 0 , strpos($_FILES["csv_file"]['name'], '.'));
+				$group_name = str_replace(' ', '-', $group_name);
+				
+				$file_data = $this->csvreader->parse_file($_FILES["csv_file"]["tmp_name"]);
+
+				$file_data_json = '[';
+				$prefix = '';
+				foreach($file_data as $row) {
+					//checking for valid email
+					if(!empty($row['emailid'])) {
+						if(!valid_email($row['emailid'])) {
+								$row['emailid'] = '';
+						}
+					}
+					// checking for valid data if not then drop the record
+					if(($str = json_encode($row)) !== FALSE) {
+						$file_data_json .= $prefix . json_encode($row);
+					}
+					$prefix = ',';
+				}
+				$file_data_json .= ']';
+
+				$csv_header = array_keys(reset($file_data));
+				$this->data['parsed_file_headers'] = $csv_header;
+				
+				$required_fields = $this->admin_model->getTableFields($this->input->post('tablename'));
+				$required_fields = array_diff($required_fields, array('id','time_updated', 'date_updated', 'user_id'));
+				$this->data['required_fields'] = $required_fields;
+
+				$this->data['tablename'] = $this->input->post('tablename');
+				$this->data['preview_data'] = array_values(reset($file_data));
+
+				$data = array(
+					'csv_filename' => $group_name,
+					'csv_header' => json_encode($csv_header),
+					'csv_data' => $file_data_json,
+					'created_at' => time(),
+					'updated_at' => time(),
+				);
+				$this->data['insert_id'] = $this->admin_model->insertCsvData($data);
+				$this->data['insert_id'] = is_array($this->data['insert_id']) ? $this->data['insert_id']['id'] : $this->data['insert_id'];
+			} else {
+				$this->data['show_parsed_data'] = false;
+				$csv_data = $this->admin_model->getCsvData($this->input->post('csv_data_id'));
+				if(($file_data = json_decode($csv_data['csv_data'], true)) === FALSE) {
+					$this->admin_model->deleteCsvData($this->input->post('csv_data_id'));
+					$this->session->set_flashdata("error", "Error uploading data please check the data and import again.");
+					redirect('admin/import', 'refresh');	
+				}
+				
+				$required_fields = $this->admin_model->getTableFields($this->input->post('tablename'));
+				$required_fields = array_diff($required_fields, array('id','time_updated', 'date_updated', 'user_id'));
+				$this->data['required_fields'] = $required_fields;
+
+				foreach($file_data as $row) {
+					$formatted_data_required = array();
+					foreach($this->data['required_fields'] as $key => $field) {
+						$data_key = array_search($field, $this->input->post());
+						if(isset($row[$data_key])) {
+							$formatted_data_required[$field] = $row[$data_key];
+							unset($row[$data_key]);
+						} else {
+							$formatted_data_required[$field] = '';
+						}
+					}
+					$formatted_data_required['time_updated'] = date("H:i:s");
+					$formatted_data_required['date_updated'] = date("Y-m-d");
+					$formatted_data_required['user_id'] = $this->session->userdata('user_id');
+					$data[] = $formatted_data_required;
+				}
+				
+				$this->admin_model->insertData($this->input->post('tablename'), $data);
+				$this->session->set_flashdata("success", "Data imported sucessfully.");
+				redirect('admin/import', 'refresh');
+			}
+		} else {
+			$this->data['show_parsed_data'] = false;
+		}
+		
+		$this->data['tables'] = $this->admin_model->getTables();
+		$this->template->set('title', 'Import CSV');
+		$this->template->load('admin/default_layout', 'contents' , 'admin/import', $this->data);
+	}
+
 	// redirect if needed, otherwise display the user list
 	public function users()	{
 

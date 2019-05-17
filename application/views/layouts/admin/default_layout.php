@@ -105,6 +105,7 @@
             <li><a href="/admin"><i class="fa fa-home"></i> <span>Home</span></a></li>
             <li><a href="/admin/files"><i class="fa fa-file"></i> <span>File Manager</span></a></li>
             <li><a href="/admin/users"><i class="fa fa-users"></i> <span>User Management</span></a></li>
+            <li><a href="/admin/import"><i class="fa fa-download"></i> <span>Import Data</span></a></li>
             <li><a href="/admin/settings"><i class="fa fa-wrench"></i> <span>Settings</span></a></li>
             <li><a href="/admin/logout"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>
           </ul>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>CeramicsKart</title>
+<title>CeramicsKart - <?php echo $title;?></title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -86,7 +86,7 @@
 	  					<nav class="navbar">
   							<ul class="navbar_menu">
 								  <li><a href="/">home</a></li>
-							  	<li><a href="#">floor tiles</a></li>
+							  	<li><a href="floor-tiles">floor tiles</a></li>
 						  		<li><a href="#">wall tiles</a></li>
 					  			<li><a href="https://3dvisualizer.ceramicskart.com/" target="_blank">3d visualizer</a></li>
                   <li><a href="#">sanitaryware</a></li>
@@ -135,7 +135,7 @@
             </ul>
           </li>
         <li class="menu_item"><a href="/">home</a></li>
-        <li class="menu_item"><a href="#">floor tiles</a></li>
+        <li class="menu_item"><a href="/floor-tiles">floor tiles</a></li>
         <li class="menu_item"><a href="#">wall tiles</a></li>
         <li class="menu_item"><a href="https://3dvisualizer.ceramicskart.com/">3d visualizer</a></li>
         <li class="menu_item"><a href="#">sanitaryware</a></li>

@@ -90,4 +90,34 @@ class Admin_model extends CI_Model {
         return $result->row();
     }
 
+    public function getTables() {
+        return $this->db->list_tables();
+    }
+
+    public function getTableFields($table) {
+        return $this->db->list_fields($table);
+    }
+
+    public function insertCsvData($data) {
+        $this->db->where('csv_filename', $data['csv_filename']);
+        $query = $this->db->get('csv_data');
+
+        if ($query->num_rows() > 0 ) {
+            return $query->row_array();
+        } else {
+            $this->db->insert('csv_data', $data);
+            return $this->db->insert_id();    
+        }
+    }
+
+    public function getCsvData($id) {
+        $this->db->where('id', $id);
+        $query = $this->db->get('csv_data');
+        return $query->row_array();
+    }
+
+    public function insertData($table, $data) {
+        $this->db->insert_batch($table, $data);
+    }
+
 }
