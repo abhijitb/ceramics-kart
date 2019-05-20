@@ -96,8 +96,9 @@ create table item_master (
   line_of_business_1 varchar(10),
   line_of_business_2 varchar(10),
   line_of_business_3 varchar(10),
-  finish varchar(10),
+  item_type varchar(10),
   product_category varchar(10),
+  line_of_business varchar(40),
   product_status varchar(10),
   length_in_mm int(12),
   width_in_mm int(12),
@@ -152,6 +153,7 @@ create table manufacturer_master (
 create table dealer_master_list (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
   dealer_number int(15),
+  manufacturer_number int(15),
   dealer_name varchar(40),
   address_01 varchar(40),
   address_02 varchar(40),
@@ -211,8 +213,10 @@ create table item_retailer_mapping (
   manufacturer_number int(15),
   retailer_number int(15),
   dealer_number int(15),
+  nearest_location varchar(40),
   city varchar(40),
   state varchar(2),
+  country varchar(40),
   time_updated time,
   date_updated date,
   user_id varchar(10),
@@ -239,6 +243,37 @@ create table product_by_application (
   user_id varchar(10),
   PRIMARY KEY (id, item_number_internal, supplier_item_number, application)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+create table item_by_application_and_colour (
+  id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  sl_no int(10),
+  size varchar(40),
+  retailer_number int(15),
+  dealer_number int(15),
+  manufacturer_number int(15),
+  city varchar(40),
+  product_id int(10),
+  product_name varchar(100),
+  product_type varchar(40),
+  product_group varchar(40),
+  application varchar(40),
+  colour varchar(40),
+  finish varchar(40),
+  length_in_mm int(12),
+  width_in_mm int(12),
+  height_in_mm int(12),
+  length_in_cm int(12),
+  width_in_cm int(12),
+  height_in_cm int(12),
+  length_in_ft int(12),
+  width_in_ft int(12),
+  height_in_ft int(12),
+  time_updated time,
+  date_updated date,
+  user_id varchar(10),
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 create table city_master (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,

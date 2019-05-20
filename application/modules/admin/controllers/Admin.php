@@ -20,8 +20,7 @@ class Admin extends MX_Controller {
 
 	public function files() {
 		$files = scandir($this->path);
-		$files = array_diff(scandir($this->path), array('.', '..'));
-
+		$files = array_diff(scandir($this->path), array('.', '..', '.DS_Store'));
 		$file_list = array();
 		foreach($files as $filename) {
 			$file_info = array();
@@ -35,7 +34,7 @@ class Admin extends MX_Controller {
 				$file_info['height'] = 0;
 				$file_info['type'] = mime_content_type($this->path . '/' .$filename);	
 			}
-			$file_info['size'] = round(filesize($this->path . '/' .$filename) / 1024, 2);
+			$file_info['size'] = round(filesize($this->path . '/' .$filename) / 1024, 2) . ' KB';
 			$file_info['name'] = $filename;
 			$file_list[] = $file_info;
 		}

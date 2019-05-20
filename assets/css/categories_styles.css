@@ -1158,14 +1158,14 @@ section
 }
 .sidebar_section
 {
-	padding-bottom: 35px;
+	/* padding-bottom: 35px; */
 	margin-bottom: 50px;
 	border-bottom: solid 1px #ebebeb;
 }
 .sidebar_title h5
 {
 	font-size: 18px;
-	margin-bottom: 21px;
+	margin-bottom: 10px;
 }
 .sidebar_categories li.active a
 {
@@ -1228,13 +1228,13 @@ section
 }
 .checkboxes li
 {
-	height: 40px;
-	line-height: 40px;
+	/* height: 40px; */
+	/* line-height: 40px; */
 }
 .checkboxes li.active i
 {
 	color: #fe4c50;
-	margin-right: 21px;
+	margin-right: 9px;
 }
 .checkboxes li.active i::after
 {
@@ -1247,11 +1247,7 @@ section
 	content: '\f00c';
 	color: #FFFFFF;
 }
-.checkboxes
-{
-	height: 200px;
-	overflow: hidden;
-}
+
 .checkboxes.active
 {
 	height: auto;
@@ -1261,7 +1257,7 @@ section
 	position: relative;
 	color: #b3b7c8;
 	cursor: pointer;
-	margin-right: 22px;
+	margin-right: 10px;
 }
 .checkboxes li span
 {

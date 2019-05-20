@@ -46,7 +46,7 @@
                                         <td><?php echo $key + 1; ?></td>
                                         <td><?php echo $file['name']; ?></td>
                                         <td><?php echo $file['type']; ?></td>
-                                        <td><?php echo $file['size']; ?> KB</td>
+                                        <td><?php echo $file['size']; ?></td>
                                         <td><?php echo $file['width']; ?></td>
                                         <td><?php echo $file['height']; ?></td>
                                         <td>

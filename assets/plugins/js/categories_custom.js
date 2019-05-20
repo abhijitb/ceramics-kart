@@ -53,7 +53,7 @@ jQuery(document).ready(function($)
 	initFavorite();
 	initFixProductBorder();
 	initIsotopeFiltering();
-	initPriceSlider();
+	//initPriceSlider();
 	initCheckboxes();
 
 	/* 
