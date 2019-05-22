@@ -13,7 +13,14 @@
 
 			</div>
 		</div>
-
+		<div class="col-md-12">
+			<?php if(!empty($this->session->flashdata('error'))) { ?>
+				<div class="alert alert-danger"><?php echo $this->session->flashdata('error'); ?></div>
+			<?php } ?>
+			<?php if(!empty($this->session->flashdata('success'))) { ?>
+				<div class="alert alert-success"><?php echo $this->session->flashdata('success'); ?></div>
+			<?php } ?>
+		</div>
 		<!-- Map Container -->
 
 		<div class="row">
@@ -69,11 +76,11 @@
 						<div>
 							<input id="input_name" class="form_input input_name input_ph" type="text" name="name" placeholder="Name" required="required" data-error="Name is required.">
 							<input id="input_email" class="form_input input_email input_ph" type="email" name="email" placeholder="Email" required="required" data-error="Valid email is required.">
-							<input id="input_website" class="form_input input_website input_ph" type="url" name="name" placeholder="Website" required="required" data-error="Name is required.">
+							<input id="input_website" class="form_input input_website input_ph" type="url" name="website" placeholder="Website">
 							<textarea id="input_message" class="input_ph input_message" name="message"  placeholder="Message" rows="3" required data-error="Please, write us a message."></textarea>
 						</div>
 						<div>
-							<button id="review_submit" type="submit" class="red_button message_submit_btn trans_300" value="Submit">send message</button>
+							<button id="review_submit" type="submit" class="red_button message_submit_btn trans_300" value="Submit">Send Message</button>
 						</div>
 					</form>
 				</div>

@@ -829,6 +829,7 @@ section
 	height: 40px;
 	background: #fe4c50;
 	border-radius: 3px;
+	padding: 10px;
 	-webkit-transition: all 0.3s ease;
 	-moz-transition: all 0.3s ease;
 	-ms-transition: all 0.3s ease;

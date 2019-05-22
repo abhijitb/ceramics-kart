@@ -8,7 +8,15 @@
   <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Sign in</p>
-
+    <div class="col-md-12">
+      <?php if(!empty($this->session->flashdata('message'))) { ?>
+				<div class="alert alert-danger"><?php echo $this->session->flashdata('message'); ?></div>
+			<?php } ?>
+			<?php if(!empty($this->session->flashdata('success'))) { ?>
+				<div class="alert alert-success"><?php echo $this->session->flashdata('success'); ?></div>
+      <?php } ?>
+      <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
+    </div>
     <form action="/admin/login" method="post" accept-charset="utf-8">
       <div class="form-group has-feedback">
           <input type="text" name="identity" value="" id="identity"  class="form-control" placeholder="Email"  />
