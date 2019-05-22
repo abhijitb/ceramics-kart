@@ -34,12 +34,12 @@ class Contact extends MX_Controller {
         $this->email->to($to);
         $this->email->subject($subject);
         $this->email->message($message);
-		var_dump($this->email->send());exit;
+		
         if ($this->email->send()) {
 			$this->session->flashdata('success','Contact information received.');
         } else {
 			$this->session->flashdata('error','Error sending information.');
 		}
-		// redirect('/contact', 'refresh');
+		redirect('/contact', 'refresh');
     }
 }
