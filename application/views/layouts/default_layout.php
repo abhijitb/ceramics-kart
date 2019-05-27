@@ -128,7 +128,7 @@
                 Select Location
               <i class="fa fa-angle-down"></i>
             </a>
-            <ul class="menu_selection">
+            <ul class="menu_selection" id="locations">
               <li><a href="#">Mumbai</a></li>
               <li><a href="#">Thane</a></li>
               <li><a href="#">Nashik</a></li>
