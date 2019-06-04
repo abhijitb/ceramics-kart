@@ -16,6 +16,8 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/contact_responsive.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/categories_styles.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/categories_responsive.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/single_styles.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/single_responsive.css">
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/popper.js"></script>
@@ -87,8 +89,8 @@
 	  					<nav class="navbar">
   							<ul class="navbar_menu">
 								  <li><a href="/">home</a></li>
-							  	<li><a href="floor-tiles">floor tiles</a></li>
-						  		<li><a href="#">wall tiles</a></li>
+							  	<li><a href="/floor-tiles">floor tiles</a></li>
+						  		<li><a href="/wall-tiles">wall tiles</a></li>
 					  			<li><a href="https://3dvisualizer.ceramicskart.com/" target="_blank">3d visualizer</a></li>
                   <li><a href="#">sanitaryware</a></li>
                   <li><a href="#">augmented reality</a></li>
@@ -137,7 +139,7 @@
           </li>
         <li class="menu_item"><a href="/">home</a></li>
         <li class="menu_item"><a href="/floor-tiles">floor tiles</a></li>
-        <li class="menu_item"><a href="#">wall tiles</a></li>
+        <li class="menu_item"><a href="/wall-tiles">wall tiles</a></li>
         <li class="menu_item"><a href="https://3dvisualizer.ceramicskart.com/">3d visualizer</a></li>
         <li class="menu_item"><a href="#">sanitaryware</a></li>
         <li class="menu_item"><a href="#">augmented reality</a></li>

@@ -7,7 +7,7 @@
 				<div class="breadcrumbs d-flex flex-row align-items-center">
 					<ul>
 						<li><a href="/">Home</a></li>
-						<li class="active"><i class="fa fa-angle-right" aria-hidden="true"></i>Floor Tiles	</li>
+						<li class="active"><i class="fa fa-angle-right" aria-hidden="true"></i>Wall Tiles	</li>
 					</ul>
 				</div>
 
@@ -77,7 +77,7 @@
 
 								<div class="product-grid">
 									<?php 
-										foreach($floor_tiles as $tile) {
+										foreach($wall_tiles as $tile) {
 
 											if(!empty($tile['img_path'])) {
 											?>
@@ -87,11 +87,11 @@
 															<img src="<?php echo $tile['img_path'];?>" alt="">
 														</div>
 														<div class="product_info">
-															<h6 class="product_name"><a href="/floor-tiles/details/<?php echo $tile['id'];?>"><?php echo $tile['product_name'].' ('.$tile['colour'].')'; ?></a></h6>
+															<h6 class="product_name"><a href="/wall-tiles/details/<?php echo $tile['id'];?>"><?php echo $tile['product_name'].' ('.$tile['colour'].')'; ?></a></h6>
 															<div class="product_price"><?php echo $tile['size'];?></div>
 														</div>
 													</div>
-													<div class="red_button add_to_cart_button"><a href="/floor-tiles/details/<?php echo $tile['id'];?>">View Details</a></div>
+													<div class="red_button add_to_cart_button"><a href="/wall-tiles/details/<?php echo $tile['id'];?>">View Details</a></div>
 												</div>
 											<?php
 											}

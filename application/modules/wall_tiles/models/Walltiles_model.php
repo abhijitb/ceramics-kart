@@ -1,10 +1,10 @@
 <?php
 
-class Floortiles_model extends CI_Model {
+class Walltiles_model extends CI_Model {
     public function __construct() {
         parent::__construct();
         $this->load->database();
-        $this->type = 'Floor Tile';
+        $this->type = 'Wall Tile';
     }
 
     public function getColours() {
@@ -31,13 +31,13 @@ class Floortiles_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function getFloorTiles() {
-        $this->db->where('product_type', 'Floor Tile');
+    public function getWallTiles() {
+        $this->db->where('product_type', 'Wall Tile');
         $query = $this->db->get('item_by_application_and_colour');
         return $query->result_array();
     }
     
-    public function getFloorTileById($tile_id) {
+    public function getWallTileById($tile_id) {
         $this->db->where('id', $tile_id);
         $query = $this->db->get('item_by_application_and_colour');
         return $query->row_array();

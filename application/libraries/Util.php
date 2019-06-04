@@ -112,4 +112,12 @@ class Util {
            return FALSE;
        return TRUE;
     }
+
+    public function array_search_partial($arr, $keyword) {
+        foreach($arr as $index => $string) {
+            if (strpos($string, $keyword) !== FALSE)
+                return $index;
+        }
+        return FALSE;
+    }
 }

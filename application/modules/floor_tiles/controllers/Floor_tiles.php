@@ -8,7 +8,6 @@ class Floor_tiles extends MX_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->model('floortiles_model');
-
     }
 
 	public function index()	{
@@ -18,8 +17,43 @@ class Floor_tiles extends MX_Controller {
 		$this->data['tile_finishes'] = $this->floortiles_model->getFinishes();
 		$this->data['tile_applications'] = $this->floortiles_model->getApplications();
 
+		$floor_tiles_from_db = $this->floortiles_model->getFloorTiles();
+		
+		if ($handle = opendir(FCPATH.'img/floor_tiles')) {
+			while (false !== ($entry = readdir($handle))) {
+				if ($entry != "." && $entry != "..") {
+					$floor_tiles_from_dir[] = $entry;
+				}
+			}
+			closedir($handle);
+		}
+		
+		foreach($floor_tiles_from_db as $key => $item) {
+			$file_name = str_replace(' ','-', $item['product_name']);
+			if(($key = $this->util->array_search_partial($floor_tiles_from_dir, $file_name)) !== FALSE) {
+				$item['img_path'] = base_url().'img/floor_tiles/'.$floor_tiles_from_dir[$key];
+				$floor_tiles_from_db[$key] = $item;
+			}
+		}
+
+		$this->data['floor_tiles'] = $floor_tiles_from_db;
+
 		$this->template->set('title', 'Floor Tiles');
 		$this->template->load('default_layout', 'contents' , 'floor_tiles/index', $this->data);
-    }
+	}
+	
+	public function details(){
+		if(empty($this->uri->segment(3)))  {
+			redirect('/floor-tiles', 'refresh');
+		} else {
+			$tile_id = $this->uri->segment(3);
+			$this->data['tile_details'] = $this->floortiles_model->getFloorTileById($tile_id);
+			$this->data['product_name'] = $this->data['tile_details']['product_name'];
+			$this->data['img_path'] = base_url().'img/floor_tiles/'.str_replace(' ', '-', $this->data['product_name']).'.jpg';
+		}
+
+		$this->template->set('title', 'Floor Tiles - Details');
+		$this->template->load('default_layout', 'contents' , 'floor_tiles/details', $this->data);
+	}
     
 }
