@@ -10,6 +10,7 @@ class Admin extends MX_Controller {
 		$this->load->library(array('ion_auth','form_validation'));
 		$this->load->helper(array('url','language','string'));
 		$this->load->model('admin_model');
+		$this->system_tables = array('csv_data', 'groups', 'login_attempts', 'rest_api_keys', 'rest_api_logs', 'users', 'users_groups');
 
 		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 
@@ -143,6 +144,44 @@ class Admin extends MX_Controller {
 		}
 	}
 
+	public function table_data() {
+		if(!empty($this->input->get())) {
+			if(!in_array($this->input->get('table'), $this->system_tables)) {
+				$table_fields = $this->admin_model->getTableFields($this->input->get('table'));
+				foreach($table_fields as $key => $field) {
+					$table_fields[$key] = ucwords(str_replace('_',' ', $field));
+				}
+				$this->data['table_fields'] = $table_fields;
+				$this->data['table_data'] = $this->admin_model->getTableData($this->input->get('table'));
+				echo json_encode(array(
+					'status' => 'success',
+					'table_fields' => $this->data['table_fields'],
+					'table_data' => $this->data['table_data']
+				));
+			} else {
+				echo json_encode(array(
+					'status' => 'error'
+				));
+			}
+		}
+	}
+
+	public function export() {
+		if (!$this->ion_auth->logged_in()) {
+			redirect('admin/login', 'refresh');
+		}
+
+		$this->data['tables'] = $this->admin_model->getTables();
+		$this->data['tables'] = $this->remove_system_tables($this->data['tables']);
+		$this->template->set('title', 'Export Data');
+		$this->template->load('admin/default_layout', 'contents' , 'admin/export', $this->data);
+	}
+
+	public function remove_system_tables($tables) {
+		$tables = array_diff($tables, $this->system_tables);
+		return $tables;
+	}
+
 	public function import() {
 
 		if (!$this->ion_auth->logged_in()) {
@@ -237,6 +276,7 @@ class Admin extends MX_Controller {
 		}
 		
 		$this->data['tables'] = $this->admin_model->getTables();
+		$this->data['tables'] = $this->remove_system_tables($this->data['tables']);
 		$this->template->set('title', 'Import CSV');
 		$this->template->load('admin/default_layout', 'contents' , 'admin/import', $this->data);
 	}

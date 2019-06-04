@@ -120,4 +120,9 @@ class Admin_model extends CI_Model {
         $this->db->insert_batch($table, $data);
     }
 
+    public function getTableData($table) {
+        $result = $this->db->get($table);
+        return $result->result_array();
+    }
+
 }
