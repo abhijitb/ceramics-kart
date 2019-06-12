@@ -18,6 +18,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/categories_responsive.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/single_styles.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/single_responsive.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/custom.css">
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/popper.js"></script>

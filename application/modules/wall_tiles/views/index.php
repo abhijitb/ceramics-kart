@@ -1,158 +1,162 @@
 <div class="container product_section_container">
-		<div class="row">
-			<div class="col product_section clearfix">
+	<div class="row">
+		<div class="col product_section clearfix">
 
-				<!-- Breadcrumbs -->
+			<!-- Breadcrumbs -->
 
-				<div class="breadcrumbs d-flex flex-row align-items-center">
-					<ul>
-						<li><a href="/">Home</a></li>
-						<li class="active"><i class="fa fa-angle-right" aria-hidden="true"></i>Wall Tiles	</li>
+			<div class="breadcrumbs d-flex flex-row align-items-center">
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li class="active"><i class="fa fa-angle-right" aria-hidden="true"></i>Wall Tiles	</li>
+				</ul>
+			</div>
+
+			<!-- Sidebar -->
+
+			<div class="sidebar">
+				<!-- Color -->
+				<div class="sidebar_section">
+					<div class="sidebar_title">
+						<h5>Color</h5>
+					</div>
+					<ul class="checkboxes" data-group="colour">
+						<?php foreach($tile_colours as $color) { ?>
+							<li>
+								<label><input type="checkbox" name="colour" value="<?php echo strtolower($color['colour']); ?>" class="filter-checkboxes" aria-hidden="true"><?php echo $color['colour']; ?></label>
+							</li>
+						<?php } ?>
 					</ul>
 				</div>
 
-				<!-- Sidebar -->
-
-				<div class="sidebar">
-					<!-- Color -->
-					<div class="sidebar_section">
-						<div class="sidebar_title">
-							<h5>Color</h5>
-						</div>
-						<ul class="checkboxes">
-							<?php foreach($tile_colours as $color) { ?>
-								<li><i class="fa fa-square-o" aria-hidden="true"></i><span><?php echo $color['colour']; ?></span></li>
-							<?php } ?>
-						</ul>
+				<!-- Size -->
+				<div class="sidebar_section">
+					<div class="sidebar_title">
+						<h5>Size</h5>
 					</div>
-
-					<!-- Size -->
-					<div class="sidebar_section">
-						<div class="sidebar_title">
-							<h5>Size</h5>
-						</div>
-						<ul class="checkboxes">
-							<?php foreach($tile_sizes as $size) { ?>
-								<li><i class="fa fa-square-o" aria-hidden="true"></i><span><?php echo $size['size']; ?></span></li>
-							<?php } ?>
-						</ul>
-					</div>
-
-					<!-- Finish Type -->
-					<div class="sidebar_section">
-						<div class="sidebar_title">
-							<h5>Finish Type</h5>
-						</div>
-						<ul class="checkboxes">
-							<?php foreach($tile_finishes as $finish) { ?>
-								<li><i class="fa fa-square-o" aria-hidden="true"></i><span><?php echo $finish['finish']; ?></span></li>
-							<?php } ?>
-						</ul>
-					</div>
-
-					<!-- Application -->
-					<div class="sidebar_section">
-						<div class="sidebar_title">
-							<h5>Application</h5>
-						</div>
-						<ul class="checkboxes">
-							<?php foreach($tile_applications as $application) { ?>
-								<li><i class="fa fa-square-o" aria-hidden="true"></i><span><?php echo $application['application']; ?></span></li>
-							<?php } ?>
-						</ul>
-					</div>
+					<ul class="checkboxes" data-group="size">
+						<?php foreach($tile_sizes as $size) { ?>
+							<li>
+								<label><input type="checkbox" name="size" value="<?php echo str_replace(' ', '-', strtolower($size['size'])); ?>" class="filter-checkboxes" aria-hidden="true"><?php echo $size['size']; ?></label>
+							</li>
+						<?php } ?>
+					</ul>
 				</div>
 
-				<!-- Main Content -->
+				<!-- Finish Type -->
+				<div class="sidebar_section">
+					<div class="sidebar_title">
+						<h5>Finish Type</h5>
+					</div>
+					<ul class="checkboxes" data-group="finish">
+						<?php foreach($tile_finishes as $finish) { ?>
+							<li>
+								<label><input type="checkbox" name="finish" value="<?php echo strtolower($finish['finish']); ?>" class="filter-checkboxes" aria-hidden="true"><?php echo $finish['finish']; ?></label>
+							</li>
+						<?php } ?>
+					</ul>
+				</div>
 
-				<div class="main_content">
+				<!-- Application -->
+				<div class="sidebar_section">
+					<div class="sidebar_title">
+						<h5>Application</h5>
+					</div>
+					<ul class="checkboxes" data-group="application">
+						<?php foreach($tile_applications as $application) { ?>
+							<li>
+								<label><input type="checkbox" name="application" value="<?php echo str_replace(' ', '-', strtolower($application['application'])); ?>" class="filter-checkboxes" aria-hidden="true"><?php echo $application['application']; ?></label>
+							</li>
+						<?php } ?>
+					</ul>
+				</div>
+			</div>
 
-					<!-- Products -->
+			<!-- Main Content -->
 
-					<div class="products_iso">
-						<div class="row">
-							<div class="col">
+			<div class="main_content">
+				<!-- Products -->
+				<div class="products_iso">
+					<div class="row">
+						<div class="col">
+							<!-- Product Grid -->
+							<div class="product-grid">
+								<?php 
+									foreach($wall_tiles as $tile) {
 
-								<!-- Product Grid -->
-
-								<div class="product-grid">
-									<?php 
-										foreach($wall_tiles as $tile) {
-
-											if(!empty($tile['img_path'])) {
-											?>
-												<div class="product-item">
-													<div class="product discount product_filter">
-														<div class="product_image">
-															<img src="<?php echo $tile['img_path'];?>" alt="">
-														</div>
-														<div class="product_info">
-															<h6 class="product_name"><a href="/wall-tiles/details/<?php echo $tile['id'];?>"><?php echo $tile['product_name'].' ('.$tile['colour'].')'; ?></a></h6>
-															<div class="product_price"><?php echo $tile['size'];?></div>
-														</div>
+										if(!empty($tile['img_path'])) {
+										?>
+											<div class="product-item <?php echo strtolower($tile['colour']).' '.strtolower($tile['finish']).' '.str_replace(' ', '-', strtolower($tile['size'])).' '.str_replace(' ', '-', strtolower($tile['application'])) ;?>">
+												<div class="product discount product_filter">
+													<div class="product_image">
+														<img src="<?php echo $tile['img_path'];?>" alt="">
 													</div>
-													<div class="red_button add_to_cart_button"><a href="/wall-tiles/details/<?php echo $tile['id'];?>">View Details</a></div>
+													<div class="product_info">
+														<h6 class="product_name"><a href="/wall-tiles/details/<?php echo $tile['id'];?>"><?php echo $tile['product_name'].' ('.$tile['colour'].')'; ?></a></h6>
+														<div class="product_price"><?php echo $tile['size'];?></div>
+														<h6 class="product_name">Application : <?php echo $tile['application']; ?></h6>
+													</div>
 												</div>
-											<?php
-											}
+												<div class="red_button add_to_cart_button"><a href="/wall-tiles/details/<?php echo $tile['id'];?>">View Details</a></div>
+											</div>
+										<?php
 										}
-									?>		
-									<!-- Product 1 -->
+									}
+								?>		
+								<!-- Product 1 -->
 
-									
+								
 
-									<!-- Product 2 -->
+								<!-- Product 2 -->
 
-									<!-- <div class="product-item women">
-										<div class="product product_filter">
-											<div class="product_image">
-												<img src="<?php echo base_url();?>assets/images/product_2.png" alt="">
-											</div>
-											<div class="favorite"></div>
-											<div class="product_bubble product_bubble_left product_bubble_green d-flex flex-column align-items-center"><span>new</span></div>
-											<div class="product_info">
-												<h6 class="product_name"><a href="single.html">Samsung CF591 Series Curved 27-Inch FHD Monitor</a></h6>
-												<div class="product_price">$610.00</div>
-											</div>
+								<!-- <div class="product-item women">
+									<div class="product product_filter">
+										<div class="product_image">
+											<img src="<?php echo base_url();?>assets/images/product_2.png" alt="">
 										</div>
-										<div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
-									</div> -->
-
-									<!-- Product 3 -->
-
-									<!-- <div class="product-item women">
-										<div class="product product_filter">
-											<div class="product_image">
-												<img src="<?php echo base_url();?>assets/images/product_3.png" alt="">
-											</div>
-											<div class="favorite"></div>
-											<div class="product_info">
-												<h6 class="product_name"><a href="single.html">Blue Yeti USB Microphone Blackout Edition</a></h6>
-												<div class="product_price">$120.00</div>
-											</div>
+										<div class="favorite"></div>
+										<div class="product_bubble product_bubble_left product_bubble_green d-flex flex-column align-items-center"><span>new</span></div>
+										<div class="product_info">
+											<h6 class="product_name"><a href="single.html">Samsung CF591 Series Curved 27-Inch FHD Monitor</a></h6>
+											<div class="product_price">$610.00</div>
 										</div>
-										<div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
-									</div> -->
+									</div>
+									<div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
+								</div> -->
 
-									<!-- Product 4 -->
+								<!-- Product 3 -->
 
-									<!-- <div class="product-item accessories">
-										<div class="product product_filter">
-											<div class="product_image">
-												<img src="<?php echo base_url();?>assets/images/product_4.png" alt="">
-											</div>
-											<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>sale</span></div>
-											<div class="favorite favorite_left"></div>
-											<div class="product_info">
-												<h6 class="product_name"><a href="single.html">DYMO LabelWriter 450 Turbo Thermal Label Printer</a></h6>
-												<div class="product_price">$410.00</div>
-											</div>
+								<!-- <div class="product-item women">
+									<div class="product product_filter">
+										<div class="product_image">
+											<img src="<?php echo base_url();?>assets/images/product_3.png" alt="">
 										</div>
-										<div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
-									</div> -->
+										<div class="favorite"></div>
+										<div class="product_info">
+											<h6 class="product_name"><a href="single.html">Blue Yeti USB Microphone Blackout Edition</a></h6>
+											<div class="product_price">$120.00</div>
+										</div>
+									</div>
+									<div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
+								</div> -->
+
+								<!-- Product 4 -->
+
+								<!-- <div class="product-item accessories">
+									<div class="product product_filter">
+										<div class="product_image">
+											<img src="<?php echo base_url();?>assets/images/product_4.png" alt="">
+										</div>
+										<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>sale</span></div>
+										<div class="favorite favorite_left"></div>
+										<div class="product_info">
+											<h6 class="product_name"><a href="single.html">DYMO LabelWriter 450 Turbo Thermal Label Printer</a></h6>
+											<div class="product_price">$410.00</div>
+										</div>
+									</div>
+									<div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
+								</div> -->
 
 
-								</div>
 							</div>
 						</div>
 					</div>
@@ -160,4 +164,74 @@
 			</div>
 		</div>
 	</div>
-	<script src="<?php echo base_url(); ?>assets/plugins/js/categories_custom.js"></script>
+</div>
+<script src="<?php echo base_url(); ?>assets/plugins/js/categories_custom.js"></script>
+<script>
+$( document ).ready(function() {
+	// store filter per group
+	var filters = {};
+
+	// init Isotope
+	var $container = $('.product-grid').isotope({
+		itemSelector: '.product-item',
+	});
+
+	// filter with selects and checkboxes
+	var $checkboxes = $('.filter-checkboxes');
+
+	$checkboxes.on('change', function(event) {
+
+		var checkbox = event.target;
+  		var $checkbox = $( checkbox );
+		var group = $checkbox.parents('.checkboxes').attr('data-group');
+
+		// create array for filter group, if not there yet
+		var filterGroup = filters[group];
+		if (!filterGroup) {
+			filterGroup = filters[group] = [];
+		}
+		// add/remove filter
+		if (checkbox.checked) {
+			// add filter
+			filterGroup.push('.' + checkbox.value);
+		} else {
+			// remove filter
+			var index = filterGroup.indexOf('.' + checkbox.value);
+			filterGroup.splice(index, 1);
+		}
+		
+		var comboFilter = getComboFilter(filters);
+		$container.isotope({ filter: comboFilter });
+	});
+
+});
+
+function getComboFilter(filters) {
+  	var combo = [];
+  	for(var prop in filters) {
+    	var group = filters[prop];
+    	if (!group.length) {
+      	// no filters in group, carry on
+      	continue;
+   		}
+    	// add first group
+    	if(!combo.length) {
+      		combo = group.slice(0);
+      		continue;
+    	}
+		// add additional groups
+		var nextCombo = [];
+		// split group into combo: [ A, B ] & [ 1, 2 ] => [ A1, A2, B1, B2 ]
+		for(var i=0; i < combo.length; i++) {
+			for (var j=0; j < group.length; j++) {
+				var item = combo[i] + group[j];
+				nextCombo.push(item);
+			}
+		}
+		combo = nextCombo;
+  }
+  var comboFilter = combo.join(', ');
+  return comboFilter;
+}
+
+</script>

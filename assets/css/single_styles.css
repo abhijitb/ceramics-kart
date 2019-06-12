@@ -826,7 +826,6 @@ section
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: auto;
 	height: 40px;
 	background: #fe4c50;
 	border-radius: 3px;
@@ -1112,8 +1111,6 @@ section
 }
 .add_to_cart_button
 {
-	width: 160px;
-	margin-left: 19px;
 	font-size: 12px !important;
 }
 .product_favorite
