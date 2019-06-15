@@ -302,3 +302,60 @@ CREATE TABLE csv_data (
   updated_at int(11),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE ci_sessions (
+  `id` varchar(128) NOT NULL,
+  `ip_address` varchar(45) NOT NULL,
+  `timestamp` int(10) unsigned DEFAULT 0 NOT NULL,
+  `data` blob NOT NULL,
+  KEY `ci_sessions_timestamp` (`timestamp`),
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE user_location (
+	id INT(11) NOT NULL AUTO_INCREMENT,
+	session_id varchar(128),
+	country_code VARCHAR(5),
+	country_name VARCHAR(100),
+	city VARCHAR(150),
+	postal VARCHAR(10),
+  state VARCHAR(50),
+	latitude VARCHAR(10),
+	longitude VARCHAR(10),
+	ip_address VARCHAR(50),
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE city_locations (
+	id INT(11) NOT NULL AUTO_INCREMENT,
+	geoname_id int(20),
+	locale_code VARCHAR(255),
+	continent_code VARCHAR(255),
+	continent_name VARCHAR(255),
+	country_iso_code VARCHAR(255),
+	country_name VARCHAR(255),
+	subdivision_1_iso_code VARCHAR(255),
+	subdivision_1_name VARCHAR(255),
+	subdivision_2_iso_code VARCHAR(255),
+	subdivision_2_name VARCHAR(255),
+	city_name VARCHAR(255),
+	metro_code VARCHAR(255),
+	time_zone VARCHAR(255),
+	is_in_european_union VARCHAR(255),
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE blocks_ipv4 (
+	id INT(11) NOT NULL AUTO_INCREMENT,
+	network VARCHAR(255),
+  geoname_id VARCHAR(255),
+  registered_country_geoname_id VARCHAR(255),
+  represented_country_geoname_id VARCHAR(255),
+  is_anonymous_proxy VARCHAR(255),
+  is_satellite_provider VARCHAR(255),
+  postal_code VARCHAR(255),
+  latitude VARCHAR(255),
+  longitude VARCHAR(255),
+  accuracy_radius VARCHAR(255),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

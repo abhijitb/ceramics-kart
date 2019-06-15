@@ -44,31 +44,29 @@
 					<div class="col-md-10 text-right">
 						<div class="top_nav_right">
 							<ul class="top_nav_menu">
-
 								<!-- Location -->
-                <li class="currency">
+								<li class="currency">
 									<a href="#">
-                    <i class="fa fa-email"></i>
-                    mail@ceramicskart.com
+										<i class="fa fa-email"></i>
+										mail@ceramicskart.com
 									</a>
 								</li>
-                <li class="account">
-                  <a href="">
-                    <i class="fa fa-phone"></i>
-                      +918369807001
-                  </a>
-                </li>
+								<li class="account">
+									<a href="#">
+										<i class="fa fa-phone"></i>
+										+918369807001
+									</a>
+								</li>
 								<li class="language">
 									<a href="#">
-                    <i class="fa fa-location-arrow"></i>
+                    					<i class="fa fa-location-arrow"></i>
 										  Select Location
 										<i class="fa fa-angle-down"></i>
 									</a>
 									<ul class="language_selection">
-                    <li><a href="#">Mumbai</a></li>
-										<li><a href="#">Thane</a></li>
-										<li><a href="#">Nashik</a></li>
-										<li><a href="#">Pune</a></li>
+										<?php foreach($locations as $location) { ?>
+											<li class="location item-<?php echo $location['id'];?>"><a href="#"><?php echo $location['city_name'];?></a></li>
+										<?php } ?>
 									</ul>
 								</li>
 							</ul>
@@ -193,6 +191,7 @@
 <script src="<?php echo base_url(); ?>assets/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/easing/easing.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/js/custom.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/location.js"></script>
 </body>
 
 </html>
