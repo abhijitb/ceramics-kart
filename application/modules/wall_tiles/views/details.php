@@ -54,8 +54,8 @@
                             </thead>
                             <tbody>
                                 <td><?php echo str_replace(' ', '-', $product_name); ?></td>
-                                <td><?php echo round((($tile_details['length_in_mm'] * $tile_details['width_in_mm']) / 1000000), 6); ?></td>
-                                <td><?php //echo ((($tile_details['length_in_mm'] * $tile_details['width_in_mm']) / 1000000) * 10.76) * $number_of_pieces_per_box; ?> </td>
+                                <td><?php echo round((($tile_details['length_in_mm'] * $tile_details['width_in_mm']) / 1000000), 4); ?></td>
+                                <td><?php echo ceil(((($tile_details['length_in_mm'] * $tile_details['width_in_mm']) / 1000000) * 10.76) * $number_of_pieces_per_box); ?> </td>
                             </tbody>
                         </table>
                     </div>
@@ -87,10 +87,10 @@
             <div class="modal-body" id="calculator">
                 <div class="calc">
                     <input class="calc-input" type="text" name="length" placeholder="Length (ft)"> X <input class="calc-input" type="text" name="width" placeholder="Width (ft)"> = <input class="calc-input" type="text" name="result" readonly="readonly" placeholder="Area (sq. ft)">
-                    <button class="btn btn-sm btn-primary">Calculate</button>
+                    <button class="btn btn-sm btn-primary" id="tilecalcbtn">Calculate</button>
                 </div>
                 <div>
-                    <b>You will need <span id="boxes">0</span> box(s).</b>
+                    <b>You will need <span id="boxes" class="tile-boxes">0</span> box(s).</b>
                 </div>
                 <br>
                 <div>
@@ -113,6 +113,19 @@
         </div>
     </div>
 </div>
+
+<script>
+    $('#tilecalcbtn').on('click', function(){
+        var length = $('input[name="length"]').val();
+        var width = $('input[name="width"]').val();
+        if(length && width) {
+            var area = (length * width);
+            var tiles_boxes = (length * width) / <?php echo $number_of_pieces_per_box; ?>;
+            $('input[name="result"]').val(area);
+            $('#boxes').html(Math.ceil(tiles_boxes));
+        }
+    });
+</script>
 
 <div class="modal" tabindex="-1" role="dialog" aria-hidden="true" id="wheretobuy">
     <div class="modal-dialog modal-md modal-dialog-scrollable">

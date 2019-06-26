@@ -1610,3 +1610,8 @@ section
 .table td, th {
 	text-align: center;   
  }
+
+ .tile-boxes {
+	font-size: 14px;
+	color: cornflowerblue;
+ }

@@ -53,6 +53,7 @@ class Wall_tiles extends MX_Controller {
 			$this->data['retailer_details'] = $this->walltiles_model->getRetailerDetails($this->data['tile_details']['retailer_number']);
 			$this->data['dealer_details'] = $this->walltiles_model->getDealerDetails($this->data['tile_details']['dealer_number']);
 			$this->data['manufacturer_details'] = $this->walltiles_model->getManufacturerDetails($this->data['tile_details']['manufacturer_number']);
+			$this->data['number_of_pieces_per_box'] = 9;
 		}
 
 		$this->template->set('title', 'Wall Tiles - Details');
