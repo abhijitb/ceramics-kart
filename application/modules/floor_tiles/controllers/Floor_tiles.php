@@ -50,6 +50,9 @@ class Floor_tiles extends MX_Controller {
 			$this->data['tile_details'] = $this->floortiles_model->getFloorTileById($tile_id);
 			$this->data['product_name'] = $this->data['tile_details']['product_name'];
 			$this->data['img_path'] = base_url().'img/floor_tiles/'.str_replace(' ', '-', $this->data['product_name']).'.jpg';
+			$this->data['retailer_details'] = $this->floortiles_model->getRetailerDetails($this->data['tile_details']['retailer_number']);
+			$this->data['dealer_details'] = $this->floortiles_model->getDealerDetails($this->data['tile_details']['dealer_number']);
+			$this->data['manufacturer_details'] = $this->floortiles_model->getManufacturerDetails($this->data['tile_details']['manufacturer_number']);
 		}
 
 		$this->template->set('title', 'Floor Tiles - Details');

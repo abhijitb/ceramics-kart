@@ -42,4 +42,25 @@ class Walltiles_model extends CI_Model {
         $query = $this->db->get('item_by_application_and_colour');
         return $query->row_array();
     }
+
+    public function getRetailerDetails($retailer_number) {
+        $this->db->where('retailer_number', $retailer_number);
+        $query = $this->db->get('retailer_master_list');
+        return $query->result_array();
+
+    }
+
+    public function getDealerDetails($dealer_number) {
+        $this->db->where('dealer_number', $dealer_number);
+        $query = $this->db->get('dealer_master_list');
+        return $query->result_array();
+
+    }
+
+    public function getManufacturerDetails($manufacturer_number) {
+        $this->db->where('manufacturer_number', $manufacturer_number);
+        $query = $this->db->get('manufacturer_master');
+        return $query->row_array();
+
+    }
 }

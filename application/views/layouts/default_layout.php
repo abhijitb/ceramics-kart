@@ -46,8 +46,8 @@
 							<ul class="top_nav_menu">
 								<!-- Location -->
 								<li class="currency">
-									<a href="#">
-										<i class="fa fa-email"></i>
+									<a href="#" style="text-transform: lowercase;">
+										<i class="fa fa-envelope"></i>
 										mail@ceramicskart.com
 									</a>
 								</li>
