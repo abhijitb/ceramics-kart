@@ -82,23 +82,23 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12 text-right">
-						  <div class="logo_container">
-							  <a href="/">ceramics<span>kart</span></a>
-              </div>
+						<div class="logo_container">
+							<a href="/">ceramics<span>kart</span></a>
+              			</div>
 	  					<nav class="navbar">
   							<ul class="navbar_menu">
 								  <li><a href="/">home</a></li>
 							  	<li><a href="/floor-tiles">floor tiles</a></li>
 						  		<li><a href="/wall-tiles">wall tiles</a></li>
 					  			<li><a href="https://3dvisualizer.ceramicskart.com/" target="_blank">3d visualizer</a></li>
-                  <li><a href="#">sanitaryware</a></li>
-                  <li><a href="#">augmented reality</a></li>
+                  				<li><a href="#">sanitaryware</a></li>
+                  				<li><a href="#">augmented reality</a></li>
 		  						<li><a href="#">other products</a></li>
 	  						</ul>
   							<div class="hamburger_container">
-								  <i class="fa fa-bars" aria-hidden="true"></i>
-							  </div>
-              </nav>
+								<i class="fa fa-bars" aria-hidden="true"></i>
+							</div>
+              			</nav>
 					</div>
 				</div>
 			</div>
@@ -112,7 +112,7 @@
 		<div class="hamburger_menu_content text-right">
 			<ul class="menu_top_nav">
 				<li class="menu_item">
-          <a href="#">
+          <a href="#" style="text-transform: lowercase;">
             <i class="fa fa-email"></i>
             mail@ceramicskart.com
           </a>
@@ -130,10 +130,9 @@
               <i class="fa fa-angle-down"></i>
             </a>
             <ul class="menu_selection" id="locations">
-              <li><a href="#">Mumbai</a></li>
-              <li><a href="#">Thane</a></li>
-              <li><a href="#">Nashik</a></li>
-              <li><a href="#">Pune</a></li>
+				<?php foreach($locations as $location) { ?>
+					<li class="location item-<?php echo $location['id'];?>"><a href="#"><?php echo $location['city_name'];?></a></li>
+				<?php } ?>
             </ul>
           </li>
         <li class="menu_item"><a href="/">home</a></li>

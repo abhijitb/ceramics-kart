@@ -85,7 +85,7 @@
             </div>
             <div class="modal-body" id="calculator">
                 <div class="calc">
-                    <input class="calc-input" type="text" name="length" placeholder="Length (ft)"> X <input class="calc-input" type="text" name="width" placeholder="Width (ft)"> = <input class="calc-input" type="text" name="result" readonly="readonly" placeholder="Area (sq. ft)">
+                    <input class="calc-input" type="number" name="length" min="1" placeholder="Length (ft)"> X <input class="calc-input" type="number" name="width" min="1" placeholder="Width (ft)"> = <input class="calc-input" type="text" name="result" readonly="readonly" placeholder="Area (sq. ft)">
                     <button class="btn btn-sm btn-primary" id="tilecalcbtn">Calculate</button>
                 </div>
                 <div>
@@ -122,6 +122,22 @@
             var tiles_boxes = (length * width) / <?php echo $number_of_pieces_per_box; ?>;
             $('input[name="result"]').val(area);
             $('#boxes').html(Math.ceil(tiles_boxes));
+        }
+    });
+    $('#extra').on('click', function(){
+        var length = $('input[name="length"]').val();
+        var width = $('input[name="width"]').val();
+
+        if($('#extra:checkbox:checked').length > 0) {
+            if(length && width) {
+                var tiles_boxes = Math.ceil((length * width) / <?php echo $number_of_pieces_per_box; ?>);
+                $('#boxes').html(Math.ceil(tiles_boxes * 1.1));
+            }
+        } else {
+            if(length && width) {
+                var tiles_boxes = Math.ceil((length * width) / <?php echo $number_of_pieces_per_box; ?>);
+                $('#boxes').html(tiles_boxes);
+            }
         }
     });
 </script>

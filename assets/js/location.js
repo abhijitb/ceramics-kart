@@ -9,7 +9,7 @@ function storeLocation(){
         url:'/location/set',
         success:function(msg){
 			if(msg.status === 'success') {
-                $.each($('li.location'), function() {
+                $.each($('li.location > a'), function() {
                     var current = $(this);
                     if(current.text() == msg.city) {
                         current.html(current.text() + ' <i class="fa fa-check"></i>')
