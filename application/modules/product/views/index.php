@@ -7,7 +7,7 @@
 			<div class="breadcrumbs d-flex flex-row align-items-center">
 				<ul>
 					<li><a href="/">Home</a></li>
-					<li class="active"><i class="fa fa-angle-right" aria-hidden="true"></i>Floor Tiles	</li>
+					<li class="active"><i class="fa fa-angle-right" aria-hidden="true"></i>Product </li>
 				</ul>
 			</div>
 
