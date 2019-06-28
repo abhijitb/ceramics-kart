@@ -28,21 +28,21 @@
 				<div class="col-md-4">
 					<div class="banner_item align-items-center" style="background-image:url(<?php echo base_url();?>assets/images/home/bathroom.jpg)">
 						<div class="banner_category">
-							<a href="categories.html">Bathroom</a>
+							<a href="/product/bathroom">Bathroom</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="banner_item align-items-center" style="background-image:url(<?php echo base_url();?>assets/images/home/bedroom.jpg)">
 						<div class="banner_category">
-							<a href="categories.html">Bedroom</a>
+							<a href="/product/bedroom">Bedroom</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="banner_item align-items-center" style="background-image:url(<?php echo base_url();?>assets/images/home/living_room.jpg)">
 						<div class="banner_category">
-							<a href="categories.html">Drawing Room</a>
+							<a href="/product/drawingroom">Drawing Room</a>
 						</div>
 					</div>
 				</div>
@@ -52,21 +52,21 @@
 				<div class="col-md-4">
 					<div class="banner_item align-items-center" style="background-image:url(<?php echo base_url();?>assets/images/home/kitchen.jpg)">
 						<div class="banner_category">
-							<a href="categories.html">Kitchen</a>
+							<a href="/product/kitchen">Kitchen</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="banner_item align-items-center" style="background-image:url(<?php echo base_url();?>assets/images/home/outdoor.jpg)">
 						<div class="banner_category">
-							<a href="categories.html">Outdoor</a>
+							<a href="/product/outdoor">Outdoor</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="banner_item align-items-center" style="background-image:url(<?php echo base_url();?>assets/images/home/office.jpg)">
 						<div class="banner_category">
-							<a href="categories.html">Office</a>
+							<a href="/product/office">Office</a>
 						</div>
 					</div>
 				</div>
