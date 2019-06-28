@@ -22,7 +22,7 @@ class Location extends MX_Controller {
 			$location_details['session_id'] = $this->session->session_id;
 			$location_details['ip_address'] = $location_details['IPv4'];
 			unset($location_details['IPv4']);
-			if(empty($location_details['city'])){
+			if(is_null($location_details['city'])){
 				$location_details['city'] = 'Mumbai';
 			}
 
