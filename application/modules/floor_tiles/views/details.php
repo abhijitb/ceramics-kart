@@ -304,3 +304,9 @@
     </div>
 </div>
 <script src="<?php echo base_url(); ?>assets/plugins/js/single_custom.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/zoomify.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.single_product_image_background').zoomify();
+    });
+</script>
