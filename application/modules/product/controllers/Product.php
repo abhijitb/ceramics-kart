@@ -14,6 +14,58 @@ class Product extends MX_Controller {
 		redirect('/', 'refresh');
 	}
 
+	public function review() {
+		if(!empty($this->input->post())) {
+			$data = array();
+			$data['tile_code'] = $this->input->post('tile_code');
+			$data['name'] = $this->input->post('name');
+			$data['email'] = $this->input->post('email');
+			$data['rating'] = $this->input->post('review_rating');
+			$data['message'] = $this->input->post('message');
+			$data['status'] = 'active';
+			$data['created_at'] = time();
+			$review_id = $this->product_model->saveReview($data);
+			if(!empty($review_id)) {
+				echo json_encode(
+					array(
+						'status' => 'success',
+						'message' => 'Review saved successfully.',
+						'review_id' => $review_id
+					)
+				);
+			} else {
+				echo json_encode(
+					array(
+						'status' => 'error',
+						'message' => 'There was an error saving the review.'
+					)
+				);
+			}
+		}
+	}
+
+	public function reviews() {
+		$tile_code = $this->input->get('tile_code');
+		$reviews = $this->product_model->getReviews($tile_code);
+		if(!empty($reviews)) {
+			echo json_encode(
+				array(
+					'status' => 'success',
+					'message' => 'Reviews found.',
+					'reviews' => $reviews
+				)
+			);
+		} else {
+			echo json_encode(
+				array(
+					'status' => 'success',
+					'message' => 'No reviews found for the provided tile code.',
+					'reviews' => array()
+				)
+			);
+		}
+	}
+
 	public function bathroom() {
 		$this->data['tile_colours'] = $this->product_model->getColours('bathroom');
 		$this->data['tile_sizes'] = $this->product_model->getSizes('bathroom');

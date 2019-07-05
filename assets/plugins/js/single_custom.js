@@ -249,6 +249,7 @@ jQuery(document).ready(function($)
 
 				star.on('click', function()
 				{
+					var count = 0;
 					var i = star.index();
 
 					stars.find('i').each(function()
@@ -260,7 +261,9 @@ jQuery(document).ready(function($)
 					{
 						$(stars[x]).find('i').removeClass('fa-star-o');
 						$(stars[x]).find('i').addClass('fa-star');
+						count++;
 					};
+					$('input[name="review_rating"]').val(count);
 				});
 			});
 		}
@@ -317,3 +320,24 @@ jQuery(document).ready(function($)
 		}
 	}
 });
+
+
+/*
+Rating custom function
+*/
+
+function star_rating(id, rating) {
+	var stars = $('.'+ id +' li');
+	stars.each(function() {
+		var star = $(this);
+		var i = rating;
+		stars.find('i').each(function()	{
+			$(this).removeClass('fa-star');
+			$(this).addClass('fa-star-o');
+		});
+		for(var x = 0; x < i; x++)	{
+			$(stars[x]).find('i').removeClass('fa-star-o');
+			$(stars[x]).find('i').addClass('fa-star');
+		};
+	});
+}

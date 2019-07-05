@@ -1,3 +1,4 @@
+<script src="<?php echo base_url(); ?>assets/plugins/js/single_custom.js"></script>
 <div class="container single_product_container">
     <div class="row">
         <div class="col">
@@ -241,23 +242,33 @@
                         <div class="col-lg-5 desc_col">
                             <h4>Reviews</h4>
                             <div class="tab_text_block">
-                                <div class="user">
-                                    <div class="user_pic"></div>
-                                    <div class="user_rating">
-                                        <ul class="star_rating">
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                                        </ul>
+                                <?php if(!empty($reviews)) {
+                                    foreach($reviews as $review) { ?>
+                                    <div class="user">
+                                        <div class="user_rating">
+                                            <ul class="star_rating user_rating_<?php echo $review['id']; ?>">
+                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="review">
-                                    <div class="review_date">27 Aug 2016</div>
-                                    <div class="user_name">Brandon William</div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                </div>
+                                    <script>
+                                        star_rating('user_rating_<?php echo $review['id']; ?>', <?php echo $review['rating']; ?>);
+                                    </script>
+                                    <div class="review">
+                                        <div class="review_date"><?php echo date('d M Y', $review['created_at']);?></div>
+                                        <div class="user_name"><?php echo $review['email']; ?></div>
+                                        <p><?php echo $review['message']; ?></p>
+                                    </div>
+                                <?php }
+                                } else { ?>
+                                    <div class="review">
+                                            No reviews found.
+                                    </div>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
@@ -272,7 +283,11 @@
                         <div class="col-lg-12 add_review_col">
 
                             <div class="add_review">
-                                <form id="review_form" action="post">
+                                <div class="alert alert-success" id="review-success">
+                                    <strong>Success!</strong> Your review was submitted successfully.
+                                </div>
+                                <form id="review_form">
+                                    <input type="hidden" name="tile_code" value="<?php echo str_replace(' ', '-', $product_name);?>">
                                     <div>
                                         <h1>Add Review</h1>
                                         <input id="review_name" class="form_input input_name" type="text" name="name" placeholder="Name*" required="required" data-error="Name is required.">
@@ -282,15 +297,16 @@
                                         <h1>Your Rating:</h1>
                                         <ul class="user_star_rating">
                                             <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                                            <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
                                             <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
                                         </ul>
+                                        <input type="hidden" name="review_rating" value="1">
                                         <textarea id="review_message" class="input_review" name="message"  placeholder="Your Review" rows="4" required data-error="Please, leave us a review."></textarea>
                                     </div>
                                     <div class="text-left text-sm-right">
-                                        <button id="review_submit" type="submit" class="red_button review_submit_btn trans_300" value="Submit">submit</button>
+                                        <button id="review_submit" type="button" class="red_button review_submit_btn trans_300" value="Submit">submit</button>
                                     </div>
                                 </form>
                             </div>
@@ -303,10 +319,26 @@
         </div>
     </div>
 </div>
-<script src="<?php echo base_url(); ?>assets/plugins/js/single_custom.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/zoomify.js"></script>
 <script>
     $(document).ready(function(){
         $('.single_product_image_background').zoomify();
+        $('#review-success').hide();
+    });
+
+    $('#review_submit').on('click', function(){
+        $.ajax({
+            url: "/product/review",
+            type: "POST",
+            data: $('#review_form').serialize(),
+            dataType: "json",
+            success: function(data) {
+                if(data.status == 'success') {
+                    $('#review-success').show();
+                }
+            },
+            error: function(e) {
+            }          
+        });
     });
 </script>

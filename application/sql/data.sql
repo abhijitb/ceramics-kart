@@ -359,3 +359,15 @@ CREATE TABLE blocks_ipv4 (
   accuracy_radius VARCHAR(255),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE reviews (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  tile_code varchar(255),
+  name varchar(255),
+  email varchar(255),
+  rating int(1),
+  status varchar(15),
+  message longtext,
+  created_at int(11),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

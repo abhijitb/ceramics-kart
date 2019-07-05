@@ -30,4 +30,16 @@ class Product_model extends CI_Model {
         $query = $this->db->get('item_by_application_and_colour');
         return $query->result_array();
     }
+
+    public function saveReview($data) {
+        $this->db->insert('reviews', $data);
+        return $this->db->insert_id();
+    }
+
+    public function getReviews($tile_code) {
+        $this->db->where('tile_code', $tile_code);
+        $this->db->where('status', 'active');
+        $query = $this->db->get('reviews');
+        return $query->result_array();
+    }
 }
