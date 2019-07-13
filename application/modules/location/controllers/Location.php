@@ -16,9 +16,9 @@ class Location extends MX_Controller {
 	
 	public function set(){
 		$location_details = $this->location_model->fetch_location_details($this->session->session_id);
-		
-		if(empty($location_details)) {
-			$remote_ip = $_SERVER['REMOTE_ADDR'];
+		$remote_ip = $_SERVER['REMOTE_ADDR'];
+
+		if(empty($location_details)) {	
 			$location_details = json_decode(file_get_contents('https://geoip-db.com/json/'.$remote_ip), true);
 			$location_details['session_id'] = $this->session->session_id;
 			$location_details['ip_address'] = $location_details['IPv4'];
@@ -29,11 +29,12 @@ class Location extends MX_Controller {
 
 			$location_details = $this->location_model->store_location_details($location_details);
 		}
-		
+
 		echo json_encode(
 			array(
 				'status' => 'success',
 				'city' => $location_details['city'],
+				'remote_ip' => $remote_ip,
 				'details' => $location_details
 			)
 		);
