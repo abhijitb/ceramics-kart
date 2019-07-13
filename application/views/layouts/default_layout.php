@@ -192,6 +192,22 @@
 <script src="<?php echo base_url(); ?>assets/plugins/easing/easing.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/js/custom.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/location.js"></script>
+
+<script>
+$(document).ready(function(){
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(showLocation);
+    }else{ 
+        $('#location').html('Geolocation is not supported by this browser.');
+    }
+});
+function showLocation(position){
+    var latitude = position.coords.latitude;
+	var longitude = position.coords.longitude;
+	console.log(latitude + ',' + longitude);
+}
+</script>
+
 </body>
 
 </html>
