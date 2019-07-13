@@ -14,6 +14,20 @@
 			<!-- Sidebar -->
 
 			<div class="sidebar">
+				<!-- Application -->
+				<div class="sidebar_section">
+					<div class="sidebar_title">
+						<h5>Application</h5>
+					</div>
+					<ul class="checkboxes" data-group="application">
+						<?php foreach($tile_applications as $application) { ?>
+							<li>
+								<label><input type="checkbox" name="application" value="<?php echo str_replace(' ', '-', strtolower($application['application'])); ?>" class="filter-checkboxes" aria-hidden="true"><?php echo $application['application']; ?></label>
+							</li>
+						<?php } ?>
+					</ul>
+				</div>
+
 				<!-- Color -->
 				<div class="sidebar_section">
 					<div class="sidebar_title">
@@ -51,20 +65,6 @@
 						<?php foreach($tile_finishes as $finish) { ?>
 							<li>
 								<label><input type="checkbox" name="finish" value="<?php echo strtolower($finish['finish']); ?>" class="filter-checkboxes" aria-hidden="true"><?php echo $finish['finish']; ?></label>
-							</li>
-						<?php } ?>
-					</ul>
-				</div>
-
-				<!-- Application -->
-				<div class="sidebar_section">
-					<div class="sidebar_title">
-						<h5>Application</h5>
-					</div>
-					<ul class="checkboxes" data-group="application">
-						<?php foreach($tile_applications as $application) { ?>
-							<li>
-								<label><input type="checkbox" name="application" value="<?php echo str_replace(' ', '-', strtolower($application['application'])); ?>" class="filter-checkboxes" aria-hidden="true"><?php echo $application['application']; ?></label>
 							</li>
 						<?php } ?>
 					</ul>
