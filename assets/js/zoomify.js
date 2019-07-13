@@ -29,7 +29,7 @@
 	Zoomify.DEFAULTS = {
 		duration: 200,
 		easing:   'linear',
-		scale:    0.9
+		scale:    0.7
 	};
 	
 	// css utilities
