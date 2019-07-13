@@ -14,6 +14,23 @@
 			<!-- Sidebar -->
 
 			<div class="sidebar">
+
+				<!-- application -->
+				<div class="sidebar_section">
+					<div class="sidebar_title">
+						<h5>Application</h5>
+					</div>
+					<ul class="checkboxes" data-group="colour">
+						<li>
+							<label><input type="checkbox" name="colour" value="floor-tile" class="filter-checkboxes" aria-hidden="true">Floor Tile</label>
+						</li>
+						<li>
+							<label><input type="checkbox" name="colour" value="wall-tile" class="filter-checkboxes" aria-hidden="true">Wall Tile</label>
+						</li>
+
+					</ul>
+				</div>
+
 				<?php if(!empty($tile_colours)) { ?>
 				<!-- Color -->
 				<div class="sidebar_section">
@@ -92,7 +109,7 @@
 									foreach($floor_tiles as $tile) {
 										if(!empty($tile['img_path'])) {
 										?>
-											<div class="product-item <?php echo strtolower($tile['colour']).' '.strtolower($tile['finish']).' '.str_replace(' ', '-', strtolower($tile['size'])).' '.str_replace(' ', '-', strtolower($tile['application'])) ;?>">
+											<div class="product-item <?php echo strtolower($tile['colour']).' '.strtolower($tile['finish']).' '.str_replace(' ', '-', strtolower($tile['size'])).' '.str_replace(' ', '-', strtolower($tile['application'])) .' '.str_replace(' ', '-', strtolower($tile['product_type'])) ;?>">
 												<div class="product discount product_filter">
 													<div class="product_image">
 														<img src="<?php echo $tile['img_path'];?>" alt="">
