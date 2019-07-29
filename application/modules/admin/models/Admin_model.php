@@ -125,4 +125,9 @@ class Admin_model extends CI_Model {
         return $result->result_array();
     }
 
+    public function deleteTableData($table_name, $id) {
+        $id = implode('", "', $id);
+        $sql = "delete from {$table_name} where id in (\"{$id}\")";
+        return $this->db->query($sql);
+    }
 }

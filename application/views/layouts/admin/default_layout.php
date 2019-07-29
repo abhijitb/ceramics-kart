@@ -14,6 +14,7 @@
 
     <!-- DataTables -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/bower_components/datatables.net-bs/css/dataTables.checkboxes.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
 
     <!-- Theme style -->
@@ -45,6 +46,7 @@
     <script src="<?php echo base_url(); ?>assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/bower_components/datatables.net/js/dataTables.buttons.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/bower_components/datatables.net/js/buttons.flash.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/bower_components/datatables.net/js/dataTables.checkboxes.min.js"></script>
     
     <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
 

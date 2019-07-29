@@ -166,6 +166,22 @@ class Admin extends MX_Controller {
 		}
 	}
 
+	public function delete_table_data() { 
+		$table = $this->remove_system_tables(array($this->input->post('table')));
+		$table_name = array_pop($table);
+		if(!empty($table_name) && !empty($this->input->post('id'))) {
+			$result = $this->admin_model->deleteTableData($table_name, $this->input->post('id'));
+			if($result) {
+				echo json_encode(array('status' => 'success'));
+				exit;
+			}
+			echo json_encode(array('status' => 'failure'));
+			exit;
+		}
+		echo json_encode(array('status' => 'failure'));
+		exit;
+	}
+
 	public function export() {
 		if (!$this->ion_auth->logged_in()) {
 			redirect('admin/login', 'refresh');

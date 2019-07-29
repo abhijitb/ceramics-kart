@@ -58,7 +58,9 @@
                 </div>
             </div>
         </div>
-	</section>
+    </section>
+    <form id="delete-data" action="/admin/delete-table-data" method="POST"></form>
+
     <!-- /.content -->
 <script type="text/javascript">
 $('#view-data').on('click', function() {
@@ -96,13 +98,57 @@ function render_table_data(table_data, table_fields) {
     $('#table-data thead').empty();
     $('#table-data tbody').empty();
 
-    $('#table-data').DataTable({
+    var dataTable = $('#table-data').DataTable({
         destroy: true,
         pageLength: 50,
         data: table_data,
         columns: columns,
         'dom': 'Bfrtip',
+        'columnDefs': [{
+            'targets': 0,
+            'checkboxes': {
+               'selectRow': true
+            },
+        }],
+        'select': {
+            'style': 'multi',
+        },
+        'order': [[1, 'asc']],
         'buttons': [
+            { 
+                text: 'Delete',
+                action: function() {
+                    var form = $('#delete-data');
+                    var rows_selected = dataTable.column(0).checkboxes.selected();
+
+                    // Iterate over all selected checkboxes
+                    $.each(rows_selected, function(index, rowId) {
+                        $(form).append(
+                            $('<input>')
+                                .attr('type', 'hidden')
+                                .attr('name', 'id[]')
+                                .val(rowId)
+                        );
+                    });
+                    $(form).append(
+                        $('<input>')
+                            .attr('type', 'hidden')
+                            .attr('name', 'table')
+                            .val($('select[name="tablename"]').find(':selected').val())
+                    );
+                    $.ajax({  
+                        type: "POST",  
+                        url: $(form).attr('action'),
+                        data: $(form).serialize(),
+                        dataType: "json",
+                        success: function(data) {  
+                            if(data.status == 'success') {
+                                $('#view-data').trigger('click');
+                            }
+                        }  
+                    }); 
+                }
+            },
             { extend: 'csv', text: 'Download as CSV' }
         ]
     });
