@@ -109,7 +109,7 @@
 									foreach($floor_tiles as $tile) {
 										if(!empty($tile['img_path'])) {
 										?>
-											<div class="product-item <?php echo strtolower($tile['colour']).' '.strtolower($tile['finish']).' '.str_replace(' ', '-', strtolower($tile['size'])).' '.str_replace(' ', '-', strtolower($tile['application'])) .' '.str_replace(' ', '-', strtolower($tile['product_type'])) ;?>">
+											<div class="product-item <?php echo strtolower($tile['colour']).' '.strtolower($tile['finish']).' '.str_replace(' ', '-', strtolower($tile['size'])).' '.str_replace(' ', '-', strtolower($tile['application'])) .' '.str_replace(' ', '-', strtolower($tile['product_type'])) ;?>" onclick="location.href='/<?php echo strtolower(str_replace(' ', '_', $tile['product_type']));?>s/details/<?php echo $tile['id'];?>'">
 												<div class="product discount product_filter">
 													<div class="product_image">
 														<img src="<?php echo $tile['img_path'];?>" alt="">

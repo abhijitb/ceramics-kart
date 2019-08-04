@@ -371,3 +371,63 @@ CREATE TABLE reviews (
   created_at int(11),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+create table retailers (
+  id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  retailer_number int(15),
+  retailer_name varchar(40),
+  dealer_number varchar(40),
+  manufacturer_number varchar(40),
+  address_01 varchar(40),
+  address_02 varchar(40),
+  address_03 varchar(40),
+  address_04 varchar(40),
+  city varchar(40),
+  state varchar(2),
+  country varchar(40),
+  land_line_phone_1 int(15),
+  land_line_phone_2 int(15),
+  mobile_1 int(15),
+  mobile_2 int(15),
+  dealer_email varchar(40),
+  dealer_website varchar(40),
+  time_open time,
+  time_close time,
+  day_close varchar(40),
+  time_updated time,
+  date_updated date,
+  user_id varchar(10),
+  PRIMARY KEY (id, retailer_number, retailer_name, dealer_number, manufacturer_number, city)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+create table tile_views (
+  id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  no_of_views int(10), 
+  sl_no int(10),
+  size varchar(40),
+  retailer_number int(15),
+  dealer_number int(15),
+  manufacturer_number int(15),
+  city varchar(40),
+  product_id int(10),
+  product_name varchar(100),
+  product_type varchar(40),
+  product_group varchar(40),
+  application varchar(40),
+  colour varchar(40),
+  finish varchar(40),
+  length_in_mm int(12),
+  width_in_mm int(12),
+  height_in_mm int(12),
+  length_in_cm int(12),
+  width_in_cm int(12),
+  height_in_cm int(12),
+  length_in_ft int(12),
+  width_in_ft int(12),
+  height_in_ft int(12),
+  time_updated time,
+  date_updated date,
+  user_id varchar(10),
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

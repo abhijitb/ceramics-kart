@@ -33,6 +33,7 @@ class Floortiles_model extends CI_Model {
 
     public function getFloorTiles() {
         $this->db->where('product_type', 'Floor Tile');
+        $this->db->group_by('product_name');
         $query = $this->db->get('item_by_application_and_colour');
         return $query->result_array();
     }
@@ -62,5 +63,39 @@ class Floortiles_model extends CI_Model {
         $query = $this->db->get('manufacturer_master');
         return $query->row_array();
 
+    }
+
+    public function getTileViews($id) {
+        $this->db->where('id', $id);
+        $query = $this->db->get('tile_views');
+        return $query->row_array();
+    }
+
+    public function updateTileViews($data) {
+        $tile_id = $data['id'];
+        $this->db->where('id', $tile_id);
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get('tile_views');
+
+        if ($query->num_rows() > 0 ) {
+            unset($data['id']);
+            $this->db->where('id', $tile_id);
+            $this->db->set($data);
+            $this->db->update('tile_views');
+            return $tile_id;
+        } else {
+            $this->db->insert('tile_views', $data);
+            return $this->db->insert_id();
+        }    
+    }
+
+    public function getRecentlyViewed($product_type) {
+        $product_type = ucwords(str_replace('_', ' ', $product_type));
+        $this->db->where('product_type', $product_type);
+        $this->db->group_by('product_name');
+        $this->db->order_by('no_of_views', 'DESC');
+        $this->db->limit('10');
+        $query = $this->db->get('tile_views');
+        return $query->result_array();
     }
 }

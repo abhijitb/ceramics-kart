@@ -10,7 +10,7 @@ class Admin extends MX_Controller {
 		$this->load->library(array('ion_auth','form_validation'));
 		$this->load->helper(array('url','language','string'));
 		$this->load->model('admin_model');
-		$this->system_tables = array('csv_data', 'groups', 'login_attempts', 'rest_api_keys', 'rest_api_logs', 'users', 'users_groups');
+		$this->system_tables = array('csv_data', 'groups', 'login_attempts', 'rest_api_keys', 'rest_api_logs', 'users', 'users_groups', 'ci_sessions', 'user_location');
 
 		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 

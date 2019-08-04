@@ -169,20 +169,6 @@
                         </div>
                         <br>
                     <?php } ?>
-                    <?php foreach($dealer_details as $dealer) { ?>
-                        <div class="card">
-                            <div class="card-body">
-                                <label class="col-form-label"><b>Dealer Name</b>: <?php echo $dealer['dealer_name'];?></label><br>
-                                <label class="col-form-label"><b>Address</b>: <?php echo implode(", ",array($dealer['address_01'],$dealer['address_02'],$dealer['address_03'],$dealer['address_04'], $dealer['city'],$dealer['state'],$dealer['country']));?></label><br>
-                                <label class="col-form-label"><b>Phone</b>: <?php echo implode(", ",array($dealer['land_line_phone_1'],$dealer['land_line_phone_2'],$dealer['mobile_1'],$dealer['mobile_2']));?></label><br>
-                                <label class="col-form-label"><b>Email</b>: <?php echo $dealer['dealer_email'];?></label><br>
-                                <label class="col-form-label"><b>Website</b>: <?php echo $dealer['dealer_website'];?></label><br>
-                                <label class="col-form-label"><b>Working Hours</b>: <?php echo $dealer['dealer_name'];?></label><br>
-                                <label class="col-form-label"><b>Closed On</b>: <?php echo $dealer['day_close'];?></label><br>
-                            </div>
-                        </div>
-                        <br>
-                    <?php } ?>
                 </div>
             </div>
             <div class="modal-footer">
@@ -314,6 +300,61 @@
 
                         </div>
 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="best_sellers">
+                <div class="container">
+                    <div class="row">
+                        <div class="col text-center">
+                            <div class="section_title new_arrivals_title">
+                                <h2>Recently Viewed</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="product_slider_container">
+                                <div class="owl-carousel owl-theme product_slider">
+
+                                <?php 
+                                    foreach($recently_viewed_tiles as $tile) {
+                                        if(!empty($tile['img_path'])) {
+                                        ?>
+                                        <div class="owl-item product_slider_item">
+                                            <div class="product-item" onclick='location.href="/wall-tiles/details/<?php echo $tile['id'];?>"'>
+                                                <div class="product discount">
+                                                    <div class="product_image">
+                                                        <img src="<?php echo $tile['img_path'];?>" alt="">
+                                                    </div>
+                                                    <div class="product_info">
+                                                        <h6 class="product_name"><a href="/wall-tiles/details/<?php echo $tile['id'];?>"><?php echo $tile['product_name'].' ('.$tile['colour'].')'; ?></a></h6>
+                                                        <div class="product_price"><?php echo $tile['size'];?></div>
+                                                        <h6 class="product_name">Application : <?php echo $tile['application']; ?></h6>
+                                                    </div>
+                                                </div>
+                                                <div class="red_button add_to_cart_button"><a href="/wall-tiles/details/<?php echo $tile['id'];?>">View Details</a></div>
+                                            </div>
+                                        </div>
+                                        
+                                        <?php
+                                        }
+                                    }
+                                    ?>
+                                </div>
+
+                                <!-- Slider Navigation -->
+
+                                <div class="product_slider_nav_left product_slider_nav d-flex align-items-center justify-content-center flex-column">
+                                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                                </div>
+                                <div class="product_slider_nav_right product_slider_nav d-flex align-items-center justify-content-center flex-column">
+                                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
